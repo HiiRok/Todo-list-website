@@ -5,12 +5,15 @@
     </div>
     
     <div class="box">    
-        <% for(var i=0; i<newlistitem.length;i++){ %>
+        <% newlistitem.forEach(function(itemm){ %>
+            <form action="/delete" method="Post">
             <div class="item">
-                <input type="checkbox">
-                <p> <%= newlistitem[i] %> </p>
-            </div>  
-           <% } %>
+                <input type="checkbox" name="checkbox" onchange="this.form.submit()" value="<%=itemm._id%>">
+                <p> <%= itemm.name %> </p>
+            </div> 
+            <input type="hidden" name="listname" value ="<%=kindofday%>">
+            </form> 
+           <% }) %>
         <form class="item" action="/" method="post">
             <input type="text" name="newItem" placeholder="New item" autocomplete="off">
             <button type="submit" name="list" value=<%= kindofday %>>+</button>
@@ -19,4 +22,4 @@
   
 
     <%- include("footer") -%>
- 
+  
